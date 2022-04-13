@@ -34,6 +34,7 @@ export const MESSAGES = {
   PAYMENT_UPDATED: "The Payment Data has been updated successfully.",
   ACCOUNT_UPDATED: "Account updated successfully.",
   ACCOUNT_DELETED: "Account deleted successfully.",
+  ACCOUNT_REQUIRED: "Sorry! only registered users can access this route",
   ACCOUNT_NOT_FOUND: "Oops! We can't find the Account you're looking for",
   ACCOUNT_EXIST:
     "Sorry, An account already exist with one of the details supplied",
@@ -42,18 +43,20 @@ export const MESSAGES = {
   NO_VALID_CREDENTIALS: "No credentials supplied, Please try again",
   INVALID_CREDENTIALS: "Sorry! Invalid credentials supplied, Please try again",
   NEW_ACCOUNT_SUCCESSFUL: "Account created successfully",
+  NEW_ORDER_SUCCESSFUL: "New order created successfully",
   LOGOUT_SUCCESSFUL: "Your account has been logged out successfully",
   UNKNOWN_ERROR: "Unknown Error occurred. Please try again",
-  INVALID_USERNAME: "Invalid Username supplied. Please choose another one",
+  INVALID_TOKEN:
+    "Invalid/expired token supplied. Please try again with a valid token",
   LOGIN_SUCCESSFUL: "Account Logged-in successfully",
   LOGIN_ERROR: "Sorry, Your email or password is incorrect",
   NO_USER: "Sorry, We can't find the User with the supplied details",
   EMAIL_EXIST:
     "Sorry! This Email has been registered. Choose another one for your account",
   FORM_ERROR: "Please fill the form properly",
-  LOGIN_REQUIRED: "Please login first before you can access that page",
-  ADMIN_REQUIRED: "Sorry! only Admin can access that page",
-  ALREADY_LOGIN: "Please Logout first before you can have access to that page",
+  LOGIN_REQUIRED: "Please login first before you can access that route",
+  ADMIN_REQUIRED: "Sorry! only Admin can access that route",
+  ALREADY_LOGIN: "Please Logout first before you can have access to that route",
   FETCH_LOADING_ERROR:
     "Error Occurred while fetching the data. Please use the refresh button to reload the data",
   FETCH_LOADING_ERROR2: "Error occurred while fetching the data. Reload now",
@@ -88,8 +91,8 @@ export const HTTP_REQUEST_CODES = {
 const API_VERSION_ROUTE = "/api/v1";
 
 export const ROUTES = {
-  DASHBOARD: `${API_VERSION_ROUTE}/dashboard`,
   AUTH: `${API_VERSION_ROUTE}/auth`,
-  ORDERS: `${API_VERSION_ROUTE}/orders`,
-  PAYMENTS: `${API_VERSION_ROUTE}/payments`,
+  ORDERS: `${API_VERSION_ROUTE}/order`,
+  PAYMENTS: `${API_VERSION_ROUTE}/payment`,
+  USERS: `${API_VERSION_ROUTE}/user`,
 };

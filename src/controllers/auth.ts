@@ -1,9 +1,20 @@
-import { createAccount } from "@services/account";
-import { MESSAGES } from "@utils/constants";
+import { createAccount, loginAccount } from "@services/account";
 import { NextFunction, Request, Response } from "express";
 
-export const loginUser = async (req: Request, res: Response) => {
-  return res.status(200).json({ user: "Xarmzon" });
+export const loginUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { email, password } = req.body;
+  try {
+    const data = await loginAccount(email, password);
+    res
+      .status(200)
+      .json({ msg: data?.msg, token: data?.token, user: data?.user });
+  } catch (err: any) {
+    next(err);
+  }
 };
 
 export const signupUser = async (

@@ -12,6 +12,17 @@ export class CustomError extends Error {
   }
 }
 
-export const createError = (msg: string, code: number = 500, data?: any) => {
-  throw new CustomError(msg, code, data);
+export const createError = (
+  msg: string,
+  code: number = 500,
+  data?: any,
+  type: "create" | "throw" = "throw"
+) => {
+  switch (type) {
+    case "create":
+      return new CustomError(msg, code, data);
+
+    case "throw":
+      throw new CustomError(msg, code, data);
+  }
 };

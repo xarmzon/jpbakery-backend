@@ -1,4 +1,5 @@
-import { getErrorMessage } from "@services/Error";
+import { getErrorMessage } from "@services/error";
+import { CustomError } from "@services/error/CustomError";
 import { MESSAGES } from "@utils/constants";
 import { NextFunction, Response, Request } from "express";
 
@@ -8,7 +9,8 @@ export const errorLogger = (
   res: Response,
   next: NextFunction
 ) => {
-  console.error(error);
+  const err = `${error?.name ?? "Error"}:-> ${error?.message}`;
+  console.error(err);
   next(error);
 };
 
@@ -18,10 +20,16 @@ export const errorResponse = (
   res: Response,
   next: NextFunction
 ) => {
-  const code = error?.code || 500;
-  const data = error?.data;
+  if (error instanceof CustomError) {
+    const code = error?.code || 500;
+    const data = error?.data;
 
-  if (code)
-    return res.status(code).json({ msg: getErrorMessage(error), error: data });
-  res.status(500).json({ msg: MESSAGES.GENERAL_ERROR_MESSAGE });
+    if (code)
+      return res
+        .status(code)
+        .json({ msg: getErrorMessage(error), error: data });
+  }
+  res
+    .status(error?.statusCode ? error?.statusCode : 500)
+    .json({ msg: MESSAGES.GENERAL_ERROR_MESSAGE });
 };

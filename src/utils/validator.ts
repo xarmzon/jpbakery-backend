@@ -1,6 +1,6 @@
 import validator from "validator";
 import { compare, hash } from "bcryptjs";
-import { IRegError } from "./types";
+import { IncomingOrder, IRegError, IError, IncomingUser } from "./types";
 import { MESSAGES } from "./constants";
 
 export const validateEmail = (email: string) => {
@@ -24,37 +24,47 @@ export const validateConfirmPassword = (
   return password === confirmPassword;
 };
 
-export const validateAccountForm = (formData: any, cPass = false) => {
+export const validateAccountForm = (formData: IncomingUser, cPass = false) => {
   const errors: IRegError[] = [];
 
   const { fullName, email, password, cPassword } = formData;
-  const validFullName = validateFullName(
-    typeof fullName === "object" ? fullName.value : fullName
-  );
-  if (!validFullName)
+
+  if (!validateFullName(fullName))
     errors.push({ name: "fullName", msg: MESSAGES.FORM.FULL_NAME });
 
-  const validEmail = validateEmail(
-    typeof email === "object" ? email.value : email
-  );
-  if (!validEmail) errors.push({ name: "email", msg: MESSAGES.FORM.EMAIL });
+  if (!validateEmail(email))
+    errors.push({ name: "email", msg: MESSAGES.FORM.EMAIL });
 
-  const validPassword = validateRegPassword(
-    typeof password === "object" ? password.value : password
-  );
-  if (!validPassword)
+  if (!validateRegPassword(password))
     errors.push({ name: "password", msg: MESSAGES.FORM.PASSWORD });
 
   if (cPass) {
-    const p = typeof password === "object" ? password.value : password;
-    const cp = typeof cPassword === "object" ? cPassword.value : cPassword;
-    const validcPass = validateConfirmPassword(p, cp);
-    if (!validcPass)
+    if (!validateConfirmPassword(password, cPassword as string))
       errors.push({
         name: "cPassword",
         msg: MESSAGES.FORM.CPASSWORD,
       });
   }
+
+  return errors;
+};
+
+export const validateNewData = <T>(data: T) => {
+  const errors: IError[] = [];
+
+  Object.entries(data).forEach((entry) => {
+    const [key, val] = entry;
+    if (typeof val === "string") {
+      if (!val || !(val.length > 0))
+        errors.push({ name: key, msg: `This field value is missing` });
+    } else {
+      if (!val || val < 500)
+        errors.push({
+          name: key,
+          msg: `This field value is missing or less than 500`,
+        });
+    }
+  });
 
   return errors;
 };
