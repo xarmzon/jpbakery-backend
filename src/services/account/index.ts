@@ -83,7 +83,7 @@ const prepareUserData = (user: DBUserData) => {
     email: user.email,
     fullName: user.fullName,
     createdAt: user.createdAt,
-    picture: user.picture,
+    picture: user.picture || "",
     role: user.role,
   };
 };

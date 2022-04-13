@@ -1,11 +1,3 @@
-export const APP_NAME = "JP BAKERY";
-export const DEFAULT_SEO = {
-  title: "Home of Good cakes",
-  defaultTitle: "",
-  titleTemplate: `%s | ${APP_NAME}`,
-  description: "",
-};
-
 export const USER_TYPES = {
   ADMIN: 1,
   CLIENT: 0,
@@ -57,11 +49,6 @@ export const MESSAGES = {
   LOGIN_REQUIRED: "Please login first before you can access that route",
   ADMIN_REQUIRED: "Sorry! only Admin can access that route",
   ALREADY_LOGIN: "Please Logout first before you can have access to that route",
-  FETCH_LOADING_ERROR:
-    "Error Occurred while fetching the data. Please use the refresh button to reload the data",
-  FETCH_LOADING_ERROR2: "Error occurred while fetching the data. Reload now",
-  FETCH_LOADING_SUCCESS: "Data Fetched successfully",
-  FETCH_LOADING_DATA: "Loading Data.........",
   NO_DATA_TO_DISPLAY: "SORRY! NO DATA AVAILABLE TO DISPLAY",
   NO_ACCESS_TO_ROUTE: "Oops! You don't have access to this route",
   GENERAL_ERROR_MESSAGE:
