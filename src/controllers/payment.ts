@@ -38,6 +38,10 @@ export const createPayment = async (
       reference,
       charges,
     });
+    if (data?.msg.includes("exist")) {
+      res.status(200).json({ ...data });
+      return;
+    }
     res.status(201).json({ ...data });
   } catch (error) {
     next(error);

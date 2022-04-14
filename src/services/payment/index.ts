@@ -86,7 +86,13 @@ export const addPaymentToDB = async (data: NewPayment) => {
     createError("Invalid Order ID, Please try again with a valid id");
     return;
   }
-  const payment = await paymentModel.create(data);
+  const oldPayment = await paymentModel.findOne({ reference: data.reference });
+  if (oldPayment) {
+    return {
+      msg: "Payment already exist for that reference number",
+    };
+  }
+  await paymentModel.create(data);
   return {
     msg: MESSAGES.PAYMENT_ADDED,
   };
