@@ -65,5 +65,6 @@ export const createUserOrder = async (data: NewOrder) => {
   const order = await OrderModel.create(data);
   return {
     msg: MESSAGES.NEW_ORDER_SUCCESSFUL,
+    orderId: order._id,
   };
 };
