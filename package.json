@@ -5,8 +5,8 @@
   "main": "src/app.ts",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon",
-    "start": "rimraf dist && tsc -p tsconfig.prod.json && ts-node dist/src/app.js"
+    "dev": "node api.js && nodemon",
+    "start": "node api.js && rimraf dist && tsc -p tsconfig.prod.json && ts-node dist/src/app.js"
   },
   "dependencies": {
     "axios": "^0.26.1",
