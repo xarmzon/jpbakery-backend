@@ -1,6 +1,6 @@
 import { Types } from "mongoose";
 import UserModel from "@models/UserModel";
-import { createError } from "@services/ddddd/CustomError";
+import { createError } from "@services/error/CustomError";
 import { HTTP_REQUEST_CODES, MESSAGES } from "@utils/constants";
 import { generateToken } from "@utils/token";
 import { DBUserData } from "@utils/types";

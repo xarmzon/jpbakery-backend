@@ -3,7 +3,7 @@ import OrderModel from "@models/OrderModel";
 import { getCustomPaginationData } from "@services/database";
 import { IncomingOrder, NewOrder } from "@utils/types";
 import { Types } from "mongoose";
-import { createError } from "@services/ddddd/CustomError";
+import { createError } from "@services/error/CustomError";
 import { HTTP_REQUEST_CODES, MESSAGES } from "@utils/constants";
 
 export const getUserOrders = async (
