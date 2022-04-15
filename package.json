@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon",
-    "start": "tsc && node ./dist/index.js"
+    "start": "tsc -p tsconfig.prod.json && node ./dist/index.js"
   },
   "dependencies": {
     "axios": "^0.26.1",
