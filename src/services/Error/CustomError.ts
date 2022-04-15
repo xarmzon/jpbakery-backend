@@ -8,7 +8,6 @@ export class CustomError extends Error {
     this.name = this.constructor.name;
     this.code = code;
     this.data = data;
-    // if(this instanceof OtherErrorType) this.type = "type"
   }
 }
 
