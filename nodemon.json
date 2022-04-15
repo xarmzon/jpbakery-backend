@@ -4,5 +4,5 @@
     "NODE_ENV": "development"
   },
   "ext": "ts",
-  "exec": "ts-node -- index.ts"
+  "exec": "ts-node index.ts"
 }
