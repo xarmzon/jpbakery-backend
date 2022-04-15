@@ -1,14 +1,14 @@
 import "module-alias/register";
 import express from "express";
 import dotenv from "dotenv";
-import { errorLogger, errorResponse } from "./src/middleware/error";
-import { ROUTES } from "./src/utils/constants";
-import { getErrorMessage } from "./src/services/error";
-import connectMongoDB from "./src/services/database";
-import authRoute from "./src/routes/auth";
-import orderRoute from "./src/routes/order";
-import userRoute from "./src/routes/user";
-import paymentRoute from "./src/routes/payment";
+import { errorLogger, errorResponse } from "./middleware/error";
+import { ROUTES } from "./utils/constants";
+import { getErrorMessage } from "./services/error";
+import connectMongoDB from "./services/database";
+import authRoute from "./routes/auth";
+import orderRoute from "./routes/order";
+import userRoute from "./routes/user";
+import paymentRoute from "./routes/payment";
 import cors from "cors";
 import morgan from "morgan";
 
