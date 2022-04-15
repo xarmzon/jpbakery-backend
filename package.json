@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon",
-    "start": "rimraf dist && tsc -p tsconfig.prod.json && pm2 start dist/src/app.js --name api",
+    "start": "rimraf dist && tsc -p tsconfig.prod.json && pm2 start dist/src/app.js --name api NODE_ENV=production",
     "start:t": "rimraf dist && tsc -p tsconfig.prod.json && ts-node dist/src/app.js"
   },
   "dependencies": {
