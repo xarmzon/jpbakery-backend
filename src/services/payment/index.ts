@@ -50,7 +50,6 @@ export const getUsersPayments = async (
       $project: {
         createdAt: 1,
         reference: 1,
-        charges: 1,
         status: 1,
         user: {
           fullName: 1,
@@ -65,6 +64,11 @@ export const getUsersPayments = async (
           charges: 1,
           nameOnCake: 1,
         },
+      },
+    },
+    {
+      $sort: {
+        createdAt: -1,
       },
     },
   ];

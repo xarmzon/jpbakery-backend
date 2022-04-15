@@ -1,3 +1,4 @@
+import { Types } from "mongoose";
 import UserModel from "@models/UserModel";
 import { createError } from "@services/error/CustomError";
 import { HTTP_REQUEST_CODES, MESSAGES } from "@utils/constants";
@@ -86,4 +87,72 @@ const prepareUserData = (user: DBUserData) => {
     picture: user.picture || "",
     role: user.role,
   };
+};
+
+export const userOverviews = async (userId: string) => {
+  const pipeline = [
+    {
+      $match: {
+        _id: new Types.ObjectId(userId),
+      },
+    },
+    {
+      $lookup: {
+        from: "orders",
+        localField: "_id",
+        foreignField: "user",
+        as: "orders",
+      },
+    },
+    {
+      $lookup: {
+        from: "payments",
+        localField: "_id",
+        foreignField: "user",
+        as: "payments",
+      },
+    },
+    {
+      $lookup: {
+        from: "payments",
+        let: {
+          user: "$_id",
+        },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $and: [
+                  {
+                    $eq: ["$status", 1],
+                  },
+                  {
+                    $eq: ["$user", "$$user"],
+                  },
+                ],
+              },
+            },
+          },
+        ],
+        as: "confirmedPayments",
+      },
+    },
+    {
+      $project: {
+        _id: 0,
+        payments: {
+          $size: "$payments",
+        },
+        orders: {
+          $size: "$orders",
+        },
+        confirmedPayments: {
+          $size: "$confirmedPayments",
+        },
+      },
+    },
+  ];
+  const result = await UserModel.aggregate(pipeline).exec();
+
+  return result[0];
 };

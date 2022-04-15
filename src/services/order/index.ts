@@ -32,6 +32,14 @@ export const getUserOrders = async (
       },
     },
     {
+      $lookup: {
+        from: "payments",
+        localField: "_id",
+        foreignField: "order",
+        as: "payments",
+      },
+    },
+    {
       $project: {
         cakeColors: 1,
         deliveryAddress: 1,
@@ -40,10 +48,24 @@ export const getUserOrders = async (
         sampleCakeImage: 1,
         createdAt: 1,
         cakeSize: 1,
+        nameOnCake: 1,
         user: {
           fullName: 1,
           email: 1,
         },
+        payment: {
+          reference: {
+            $arrayElemAt: ["$payments.reference", 0],
+          },
+          status: {
+            $arrayElemAt: ["$payments.status", 0],
+          },
+        },
+      },
+    },
+    {
+      $sort: {
+        createdAt: -1,
       },
     },
   ];
