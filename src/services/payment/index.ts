@@ -1,7 +1,7 @@
 import { Types } from "mongoose";
 import OrderModel from "@models/OrderModel";
 import paymentModel from "@models/PaymentModel";
-import { createError } from "@services/error/CustomError";
+import { createError } from "@services/err/CustomError";
 import { HTTP_REQUEST_CODES, MESSAGES } from "@utils/constants";
 import { IncomingPayment, NewPayment } from "@utils/types";
 import { validateNewData } from "@utils/validator";

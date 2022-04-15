@@ -1,5 +1,5 @@
-import { getErrorMessage } from "@services/error/error";
-import { CustomError } from "@services/error/CustomError";
+import { getErrorMessage } from "@services/err";
+import { CustomError } from "@services/err/CustomError";
 import { MESSAGES } from "@utils/constants";
 import { NextFunction, Response, Request } from "express";
 

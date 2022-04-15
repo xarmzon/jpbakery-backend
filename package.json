@@ -2,12 +2,14 @@
   "name": "jp-bakery-backend",
   "version": "1.0.0",
   "description": "JP Bakery Backend developed by RastaXarm",
-  "main": "index.ts",
+  "main": "src/app.ts",
   "license": "MIT",
   "scripts": {
     "dev": "nodemon",
     "start": "rimraf dist && tsc -p tsconfig.prod.json && pm2 start dist/src/app.js --name api",
-    "start:t": "rimraf dist && tsc -p tsconfig.prod.json && ts-node dist/src/app.js"
+    "start:n": "rimraf dist && tsc -p tsconfig.prod.json && node dist/src/app.js",
+    "start:ts": "rimraf dist && tsc -p tsconfig.prod.json && ts-node dist/src/app.js",
+    "serve": "tsc src/app.ts -w & pm2 start dist/app.js --watch"
   },
   "dependencies": {
     "axios": "^0.26.1",

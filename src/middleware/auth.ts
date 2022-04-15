@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { createError, CustomError } from "@services/error/CustomError";
+import { createError, CustomError } from "@services/err/CustomError";
 import { HTTP_REQUEST_CODES, MESSAGES } from "@utils/constants";
 import { verifyToken } from "@utils/token";
 import { RequestWithUserIdAndRole } from "@utils/types";
